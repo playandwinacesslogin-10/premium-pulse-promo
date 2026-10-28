@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPIN & WIN — Mega Prize Promo Event</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Heebo:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fedex-purple:#7C3AED;
+  --fedex-purple-dark:#4D148C;
+  --fedex-orange:#FF6600;
+  --bg:#0B0F19;
+  --bg-alt:#111827;
+  --surface:#1F2937;
+  --surface-2:#374151;
+  --text:#F9FAFB;
+  --text-muted:#9CA3AF;
+  --border:rgba(255,255,255,0.08);
+  --success:#10B981;
+  --success-bg:rgba(16,185,129,0.15);
+  --shadow:0 10px 30px rgba(0,0,0,0.4);
+  --shadow-lg:0 20px 50px rgba(0,0,0,0.6);
+  --shadow-glow:0 0 40px rgba(124,58,237,0.25);
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat','Heebo',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body[dir="rtl"]{font-family:'Heebo','Montserrat',sans-serif}
+
+/* Live Ticker Tape */
+.ticker-tape{
+  background:linear-gradient(90deg, var(--fedex-purple-dark), var(--fedex-purple), var(--fedex-purple-dark));
+  color:#fff; padding:8px 0; overflow:hidden; white-space:nowrap;
+  font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:1px;
+  border-bottom:2px solid var(--fedex-orange);
+}
+.ticker-content{ display:inline-block; animation: marquee 25s linear infinite; }
+.ticker-content span{ margin: 0 30px; }
+.ticker-content .win-icon{color:var(--fedex-orange);margin-right:5px;}
+@keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,15,25,0.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:22px;letter-spacing:1px}
+.logo .logo-text-purple{color:var(--fedex-purple)}
+.logo .logo-text-orange{color:var(--fedex-orange)}
+.logo-mark{
+  width:40px;height:40px;border-radius:8px;
+  background:linear-gradient(135deg,var(--fedex-purple) 0%,var(--fedex-orange) 100%);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:22px;font-weight:900;
+}
+.timer-badge{
+  background:rgba(255,102,0,0.15);color:var(--fedex-orange);
+  border:1px solid var(--fedex-orange);padding:6px 12px;border-radius:8px;
+  font-weight:900;font-size:14px;display:flex;align-items:center;gap:6px;
+}
+.header-actions{display:flex;align-items:center;gap:12px}
+.icon-btn{
+  background:var(--surface);border:1px solid var(--border);color:var(--text);
+  width:40px;height:40px;border-radius:8px;cursor:pointer;font-size:18px;
+  display:flex;align-items:center;justify-content:center;transition:all .15s;
+  font-family:inherit;
+}
+.icon-btn:hover{border-color:var(--fedex-purple);color:var(--fedex-purple)}
+.menu-btn{display:none}
+
+/* BOLD LANGUAGE TRANSLATOR BUTTON */
+.lang-btn {
+  background: linear-gradient(135deg, var(--fedex-purple), var(--fedex-orange));
+  color: #fff; border: none; padding: 0 16px; height: 40px;
+  border-radius: 8px; cursor: pointer; font-family: inherit;
+  font-weight: 900; font-size: 14px; display: flex; align-items: center;
+  gap: 8px; text-transform: uppercase; letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(124,58,237,0.4); transition: transform .15s;
+}
+.lang-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(124,58,237,0.6); }
+
+@media (max-width:768px){
+  .menu-btn{display:flex}
+  .desktop-nav{display:none}
+  .timer-badge{display:none;}
+}
+.desktop-nav{display:flex;gap:4px}
+.desktop-nav a{
+  color:var(--text);text-decoration:none;padding:8px 16px;border-radius:8px;
+  font-weight:800;font-size:14px;transition:all .15s;text-transform:uppercase;
+}
+.desktop-nav a:hover{background:var(--surface);color:var(--fedex-orange)}
+
+/* Drawer */
+.drawer{
+  position:fixed;top:0;right:-320px;width:300px;height:100%;
+  background:var(--bg-alt);border-left:1px solid var(--border);z-index:200;
+  transition:transform .3s ease;padding:24px;display:flex;flex-direction:column;gap:6px;
+  box-shadow:var(--shadow-lg);
+}
+body[dir="rtl"] .drawer{right:auto;left:-320px;border-left:none;border-right:1px solid var(--border)}
+.drawer.open{transform:translateX(-320px)}
+body[dir="rtl"] .drawer.open{transform:translateX(320px)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:8px 4px 20px;margin-bottom:12px;border-bottom:1px solid var(--border)}
+.drawer a{
+  color:var(--text);text-decoration:none;padding:14px 16px;border-radius:10px;
+  font-weight:700;font-size:15px;transition:all .15s;display:flex;align-items:center;gap:12px;text-transform:uppercase;
+}
+.drawer a:hover{background:var(--surface);color:var(--fedex-orange)}
+.drawer a .ico{font-size:18px;width:24px;text-align:center}
+.drawer-cta{
+  margin-top:auto;background:linear-gradient(135deg,var(--fedex-purple) 0%,var(--fedex-orange) 100%);
+  color:#fff!important;text-align:center;font-weight:900;justify-content:center;font-size:16px;
+}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:150;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.show{opacity:1;pointer-events:auto}
+
+/* Hero */
+.hero{
+  text-align:center;padding:60px 16px 80px;max-width:800px;margin:0 auto;
+  position:relative;
+  background: radial-gradient(circle at 50% 0%, rgba(124,58,237,0.1) 0%, var(--bg) 70%);
+}
+.hero-content{position:relative}
+.live-tag{
+  display:inline-flex;align-items:center;gap:8px;background:var(--surface);
+  border:1px solid var(--border);padding:8px 18px;border-radius:999px;
+  font-size:12px;font-weight:800;color:var(--fedex-purple);letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:24px;box-shadow:var(--shadow);
+}
+.live-tag .dot{width:8px;height:8px;background:var(--success);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.2)}}
+.hero h1{font-size:clamp(48px,10vw,84px);font-weight:900;letter-spacing:-2px;margin-bottom:12px;line-height:1;}
+.hero h1 .amp{color:var(--fedex-orange);font-weight:900;margin:0 6px}
+.hero .slogan{font-size:clamp(18px,4vw,22px);color:var(--text-muted);margin-bottom:40px;font-weight:700;max-width:500px;margin-left:auto;margin-right:auto;text-transform:uppercase;letter-spacing:1px}
+
+/* Jackpot card */
+.jackpot-card{
+  background:linear-gradient(135deg, var(--fedex-purple-dark) 0%, var(--fedex-purple) 100%);
+  color:#fff;border-radius:20px;padding:24px 28px;margin:0 auto 40px;max-width:360px;
+  box-shadow:0 15px 40px rgba(124,58,237,0.3); position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.1);
+}
+.jackpot-card::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:linear-gradient(45deg,transparent 40%,rgba(255,102,0,.25) 50%,transparent 60%);
+  animation:shimmer 3s infinite linear;
+}
+@keyframes shimmer{0%{transform:translate(-100%,-100%)}100%{transform:translate(100%,100%)}}
+.jackpot-card .label{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--fedex-orange);position:relative}
+.jackpot-card .amount{font-size:48px;font-weight:900;margin-top:6px;color:#fff;position:relative;letter-spacing:-1px}
+.jackpot-card .currency{font-size:24px;color:var(--fedex-orange);margin-right:6px;font-weight:800}
+
+/* Wheel */
+.wheel-wrap{position:relative;width:380px;max-width:100%;margin:0 auto;aspect-ratio:1}
+.wheel{ width:100%;height:100%; transition:transform 5s cubic-bezier(.17,.67,.16,.99); filter:drop-shadow(0 15px 35px rgba(0,0,0,0.5)); }
+.pointer{
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  width:0;height:0; border-left:18px solid transparent;border-right:18px solid transparent;
+  border-top:32px solid var(--fedex-orange);z-index:5; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+.spin-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:128px;height:128px;border-radius:50%;
+  background:linear-gradient(135deg, var(--fedex-orange) 0%, #cc5200 100%);
+  border:5px solid var(--bg);color:#fff;font-weight:900;font-size:16px;cursor:pointer;z-index:4;
+  box-shadow:0 15px 35px rgba(255,102,0,0.6),inset 0 -6px 15px rgba(0,0,0,0.2);
+  transition:transform .15s;font-family:inherit;line-height:1.1;text-transform:uppercase;letter-spacing:1px;
+  animation: pulse-glow 2s infinite;
+}
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.7), 0 15px 35px rgba(255,102,0,0.6); }
+  70% { box-shadow: 0 0 0 20px rgba(255, 102, 0, 0), 0 15px 35px rgba(255,102,0,0.6); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 102, 0, 0), 0 15px 35px rgba(255,102,0,0.6); }
+}
+.spin-btn:hover:not(:disabled){transform:translate(-50%,-50%) scale(1.08)}
+.spin-btn:active:not(:disabled){transform:translate(-50%,-50%) scale(.95)}
+.spin-btn:disabled{opacity:.7;cursor:not-allowed;filter:saturate(.5);animation:none;}
+.spins-counter{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--surface);border:1px solid var(--border);
+  padding:10px 20px;border-radius:999px;font-weight:800;font-size:15px;color:var(--text);
+  margin-top:32px;box-shadow:var(--shadow);text-transform:uppercase;letter-spacing:1px;
+}
+.spins-counter .num{font-size:22px;font-weight:900;color:var(--fedex-orange)}
+.spins-counter.zero .num{color:#ef4444}
+
+/* Sections */
+.section{max-width:1000px;margin:0 auto;padding:60px 16px;border-radius:32px;}
+.section:nth-child(even){background:var(--bg-alt)}
+.section-head{text-align:center;margin-bottom:40px}
+.section-head h2{font-size:clamp(28px,6vw,40px);font-weight:900;color:var(--text);letter-spacing:-1px;margin-bottom:8px;text-transform:uppercase}
+.section-head p{color:var(--text-muted);font-size:16px;max-width:600px;margin:0 auto;font-weight:600}
+
+/* Prize ladder */
+.prize-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.prize-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;gap:8px;
+  transition:all .2s;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.prize-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--fedex-purple)}
+.prize-card.tier-1{background:linear-gradient(135deg,var(--fedex-purple-dark) 0%, var(--fedex-purple) 100%);color:#fff;border-color:var(--fedex-purple)}
+.prize-card.tier-1 .pcat{color:var(--fedex-orange)}
+.prize-card.tier-1 .pval{color:#fff}
+.prize-card.tier-1 .pdesc{color:rgba(255,255,255,0.8)}
+.prize-card.tier-2{background:linear-gradient(135deg,var(--fedex-orange) 0%, #cc5200 100%);color:#fff;border-color:var(--fedex-orange)}
+.prize-card.tier-2 .pcat{color:var(--fedex-purple)}
+.prize-card.tier-2 .pval{color:#fff}
+.prize-card.tier-2 .pdesc{color:rgba(255,255,255,0.8)}
+.prize-card .ptag{
+  position:absolute;top:12px;right:12px; font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;background:rgba(124,58,237,0.2);color:var(--fedex-purple);
+}
+body[dir="rtl"] .prize-card .ptag{right:auto; left:12px;}
+.prize-card.tier-1 .ptag, .prize-card.tier-2 .ptag{background:rgba(255,255,255,0.2);color:#fff}
+.prize-card .pcat{font-size:12px;font-weight:800;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase}
+.prize-card .pval{font-size:28px;font-weight:900;color:var(--text);letter-spacing:-1px}
+.prize-card .pdesc{font-size:13px;color:var(--text-muted);margin-top:4px;font-weight:600}
+
+/* Claim center */
+.claim-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.contact-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;display:flex;flex-direction:column;gap:12px;transition:all .2s;box-shadow:var(--shadow);
+}
+.contact-card:hover{border-color:var(--fedex-purple);box-shadow:var(--shadow-glow)}
+.contact-card .ch-row{display:flex;align-items:center;gap:14px}
+.contact-card .ch-icon{ width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center; font-size:24px;flex-shrink:0; }
+.ch-icon.email{background:rgba(124,58,237,0.2);color:var(--fedex-purple)}
+.ch-icon.whatsapp{background:rgba(37,211,102,0.2);color:#25d366}
+.ch-icon.telegram{background:rgba(0,136,204,0.2);color:#0088cc}
+.contact-card .ch-name{font-weight:900;color:var(--text);font-size:16px;text-transform:uppercase;letter-spacing:.5px}
+.contact-card .ch-detail{font-size:13px;color:var(--text-muted);font-weight:600}
+.contact-card .ch-status{
+  display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;
+  padding:4px 10px;border-radius:999px;width:fit-content;text-transform:uppercase;letter-spacing:.5px;
+}
+.ch-status.online{background:var(--success-bg);color:var(--success)}
+.contact-card .ch-action{
+  background:linear-gradient(135deg,var(--fedex-purple) 0%,var(--fedex-orange) 100%);color:#fff;border:none;padding:14px;border-radius:8px;
+  font-weight:900;font-size:14px;cursor:pointer;text-decoration:none;text-align:center;
+  font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:1px;display:block;
+  position:relative;overflow:hidden;
+}
+.contact-card .ch-action::after {
+  content:'';position:absolute;top:-50%; left:-50%; width:200%; height:200%;background:rgba(255,255,255,0.2);
+  transform:rotate(45deg) translateX(-150%);transition:transform 0.6s;
+}
+.contact-card .ch-action:hover::after { transform:rotate(45deg) translateX(150%); }
+
+.verify-alert{
+  display:flex;align-items:center;gap:12px;background:var(--success-bg);
+  border:1px solid var(--success);color:var(--success);padding:14px 20px;border-radius:var(--radius);
+  margin-bottom:24px;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;justify-content:center;
+}
+
+/* History */
+.history-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.history-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.history-head h3{font-size:18px;font-weight:900;color:var(--text);text-transform:uppercase;letter-spacing:.5px}
+.history-head .meta{font-size:12px;color:var(--text-muted);font-weight:700}
+.history-scroll{overflow-x:auto}
+table.history{width:100%;border-collapse:collapse;font-size:14px;min-width:500px}
+table.history th,table.history td{padding:14px 20px;text-align:left;border-bottom:1px solid var(--border)}
+body[dir="rtl"] table.history th,body[dir="rtl"] table.history td{text-align:right}
+table.history th{background:var(--bg-alt);color:var(--text-muted);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+table.history tbody tr:hover{background:var(--surface-2)}
+table.history td{font-weight:600;color:var(--text)}
+.status-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase}
+.status-pill .dot{width:6px;height:6px;border-radius:50%}
+.status-paid{background:var(--success-bg);color:var(--success)}
+.status-paid .dot{background:var(--success)}
+
+/* Modal */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:300;
+  display:flex;align-items:center;justify-content:center;padding:16px; opacity:0;pointer-events:none;transition:opacity .25s;
+}
+.modal.show{opacity:1;pointer-events:auto}
+.modal-content{
+  background:var(--bg-alt);border:1px solid var(--border);border-radius:20px;
+  padding:32px;max-width:460px;width:100%;max-height:90vh;overflow-y:auto;
+  transform:translateY(20px) scale(.98);transition:transform .25s; box-shadow:var(--shadow-lg);position:relative;
+}
+.modal.show .modal-content{transform:translateY(0) scale(1)}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);cursor:pointer;font-size:18px;color:var(--text);
+  display:flex;align-items:center;justify-content:center;
+}
+body[dir="rtl"] .modal-close{right:auto;left:16px}
+.modal-close:hover{background:var(--surface-2);color:var(--text)}
+.modal-icon{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 16px; display:flex;align-items:center;justify-content:center;font-size:32px;
+  background:rgba(255,102,0,0.15);color:var(--fedex-orange);
+}
+.modal-icon.purple{background:rgba(124,58,237,0.15);color:var(--fedex-purple)}
+.modal h3{color:var(--text);font-size:28px;font-weight:900;text-align:center;margin-bottom:8px;letter-spacing:-1px;text-transform:uppercase}
+.modal .subtitle{text-align:center;color:var(--text-muted);font-size:14px;margin-bottom:20px;font-weight:700}
+.prize-display{
+  text-align:center;background:linear-gradient(135deg,var(--fedex-purple-dark) 0%, var(--fedex-purple) 100%);
+  border-radius:16px;padding:20px;margin:20px 0;border:1px solid rgba(255,255,255,0.1);
+}
+.prize-display .label{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--fedex-orange)}
+.prize-display .amount{font-size:48px;font-weight:900;color:#fff;margin:6px 0;letter-spacing:-2px}
+.prize-display .cat{font-size:14px;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.ref-box{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin:16px 0;
+}
+.ref-box .rl{font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+.ref-box .rv{font-family:'Montserrat',monospace;font-weight:900;color:var(--text);font-size:15px;margin-top:2px}
+.ref-box .copy{
+  background:var(--fedex-purple);border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:900;cursor:pointer;color:#fff;
+  font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.5px;
+}
+.ref-box .copy:hover{background:var(--fedex-purple-dark)}
+
+.claim-steps{list-style:none;margin:20px 0;counter-reset:step}
+.claim-steps li{
+  padding:14px 14px 14px 50px;position:relative;background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;margin-bottom:10px;font-size:14px;line-height:1.5;font-weight:600;color:var(--text-muted);
+}
+body[dir="rtl"] .claim-steps li{padding:14px 50px 14px 14px}
+.claim-steps li::before{
+  counter-increment:step;content:counter(step);position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  width:30px;height:30px;background:var(--fedex-orange);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;
+}
+body[dir="rtl"] .claim-steps li::before{left:auto;right:12px}
+
+.contact-options{display:grid;gap:12px;margin:20px 0}
+.contact-option{
+  display:flex;align-items:center;gap:16px;padding:16px;border:1px solid var(--border);
+  border-radius:14px;text-decoration:none;color:var(--text);background:var(--surface);
+  transition:all .15s;cursor:pointer;font-family:inherit;
+}
+.contact-option:hover{border-color:var(--fedex-purple);background:var(--surface-2);transform:translateY(-2px)}
+.contact-option .co-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.co-icon.email{background:rgba(124,58,237,0.2);color:var(--fedex-purple)}
+.co-icon.whatsapp{background:rgba(37,211,102,0.2);color:#25d366}
+.co-icon.telegram{background:rgba(0,136,204,0.2);color:#0088cc}
+.contact-option .co-text{flex:1}
+.contact-option .co-name{font-weight:900;font-size:16px;text-transform:uppercase;letter-spacing:.5px}
+.contact-option .co-detail{font-size:13px;color:var(--text-muted);font-weight:600;margin-top:2px}
+.contact-option .co-arrow{color:var(--fedex-purple);font-size:22px;font-weight:900}
+
+.btn{
+  padding:14px 20px;border-radius:12px;border:1px solid transparent;font-weight:900;
+  cursor:pointer;font-family:inherit;font-size:16px;transition:all .15s;text-transform:uppercase;letter-spacing:1px;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--fedex-purple) 0%,var(--fedex-orange) 100%);color:#fff;
+  animation: btn-pulse 2s infinite;
+}
+@keyframes btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,58,237,0.4)}
+.btn-secondary{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn-secondary:hover{border-color:var(--text);background:var(--surface-2)}
+.btn-block{width:100%;display:block;text-align:center}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+
+.release-note{font-size:12px; text-align:center; color:var(--text-muted); margin-top:16px; font-weight:600; padding:10px; background:var(--surface); border-radius:8px; border:1px solid var(--border);}
+.ledger-note {display:flex; justify-content:center; gap:8px; font-size:11px; text-transform:uppercase; letter-spacing:1px; font-weight:800; color:var(--success); margin-top:8px;}
+
+/* Loading Spinner for Validation */
+.loader { border: 6px solid var(--surface-2); border-top: 6px solid var(--fedex-orange); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.validation-step {
+  text-align: left; background: var(--surface); padding: 10px 16px; border-radius: 8px; margin-bottom: 8px;
+  font-size: 13px; font-weight: 700; color: var(--text-muted); border: 1px solid var(--border); opacity: 0.5; transition: all 0.3s;
+}
+body[dir="rtl"] .validation-step { text-align: right; }
+.validation-step.active { opacity: 1; color: var(--text); border-color: var(--fedex-purple); }
+.validation-step.done { opacity: 1; color: var(--success); border-color: var(--success); }
+.validation-step .icon { margin-left: 10px; float: right; font-weight: 900; }
+body[dir="rtl"] .validation-step .icon { margin-right: 10px; margin-left: 0; float: left; }
+
+/* Live Activity Feed */
+.live-feed { position: fixed; bottom: 20px; left: 20px; z-index: 50; width: 280px; pointer-events: none; }
+body[dir="rtl"] .live-feed { left: auto; right: 20px; }
+.feed-item {
+  background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--success);
+  padding: 12px 16px; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 10px; display: flex; align-items: center; gap: 12px;
+  transform: translateX(-120%); opacity: 0; transition: all 0.5s cubic-bezier(.17,.67,.16,.99);
+}
+body[dir="rtl"] .feed-item { transform: translateX(120%); border-left: none; border-right: 4px solid var(--success); }
+.feed-item.show { transform: translateX(0); opacity: 1; }
+.feed-item .feed-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); color: var(--text); display:flex; align-items:center; justify-content:center; font-weight: 900; font-size: 14px;}
+.feed-item .feed-text { font-size: 12px; line-height: 1.3; }
+.feed-item .feed-text strong { color: var(--fedex-orange); }
+
+/* Toast */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--text);color:var(--bg);padding:14px 24px;border-radius:12px;font-weight:900;
+  z-index:400;opacity:0;transition:all .3s;pointer-events:none;font-size:15px;
+  box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.5px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Confetti */
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:350}
+
+/* Settings bar */
+.settings-bar{display:flex;justify-content:center;gap:10px;margin-top:24px;flex-wrap:wrap;}
+.setting-toggle{
+  display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);
+  padding:8px 16px;border-radius:999px;font-size:12px;font-weight:800;color:var(--text-muted);
+  cursor:pointer;font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:1px;
+}
+.setting-toggle:hover{border-color:var(--fedex-purple);color:var(--fedex-purple)}
+.setting-toggle.active{background:var(--fedex-purple);color:#fff;border-color:var(--fedex-purple)}
+
+:focus-visible{outline:2px solid var(--fedex-purple);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){ *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important} .wheel{transition:transform 1s linear} }
+
+@media (max-width:600px){
+  .hero{padding:40px 14px 60px}
+  .section{padding:40px 14px}
+  .modal-content{padding:24px}
+  .prize-display .amount{font-size:36px}
+  .wheel-wrap{width:340px}
+  .spin-btn{width:110px;height:110px;font-size:14px}
+  .hero h1{font-size:56px}
+  .modal h3{font-size:24px}
+  .live-feed { width: calc(100% - 40px); }
+  .lang-btn { padding: 0 10px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ticker-tape">
+  <div class="ticker-content">
+    <span class="win-icon">🏆</span> David just won ₪70,000
+    <span class="win-icon">🔥</span> Sarah claimed ₪50,000
+    <span class="win-icon">🏆</span> Anonymous won ₪200,000
+    <span class="win-icon">🔥</span> Michael claimed ₪50,000
+    <span class="win-icon">🏆</span> Emma just won ₪70,000
+    <span class="win-icon">🔥</span> James claimed ₪50,000
+  </div>
+</div>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">S</div>
+    <span><span class="logo-text-purple">SPIN</span> <span class="logo-text-orange">&amp;</span> <span class="logo-text-purple">WIN</span></span>
+  </div>
+  <div class="timer-badge">⏳ <span id="countdown">14:59</span></div>
+  <nav class="desktop-nav">
+    <a href="#hero" data-i18n="nav_wheel">Wheel</a>
+    <a href="#ladder" data-i18n="nav_prizes">Prizes</a>
+    <a href="#claim" data-i18n="nav_claim">Claim</a>
+    <a href="#history" data-i18n="nav_history">History</a>
+  </nav>
+  <div class="header-actions">
+    <button class="lang-btn" onclick="toggleLang()">
+      <span>🌐</span> <span id="langBtnText">עברית</span>
+    </button>
+    <button class="icon-btn" id="soundBtn" onclick="toggleSound()" title="Toggle sound">🔇</button>
+    <button class="icon-btn menu-btn" onclick="toggleDrawer(true)" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="smartCloseAll()"></div>
+
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div class="logo"><div class="logo-mark">S</div><span>SPIN &amp; WIN</span></div>
+    <button class="icon-btn" onclick="toggleDrawer(false)">✕</button>
+  </div>
+  <a href="#hero" onclick="toggleDrawer(false)"><span class="ico">🎡</span><span data-i18n="nav_wheel">Wheel</span></a>
+  <a href="#ladder" onclick="toggleDrawer(false)"><span class="ico">🏆</span><span data-i18n="nav_prizes">Prizes</span></a>
+  <a href="#claim" onclick="toggleDrawer(false)"><span class="ico">📩</span><span data-i18n="nav_claim">Claim</span></a>
+  <a href="#history" onclick="toggleDrawer(false)"><span class="ico">📋</span><span data-i18n="nav_history">History</span></a>
+  <a href="#hero" class="drawer-cta" onclick="toggleDrawer(false);document.getElementById('hero').scrollIntoView()" data-i18n="spin_now">SPIN NOW</a>
+</div>
+
+<main>
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="live-tag"><span class="dot"></span><span data-i18n="tag_live">Live · Mega Prize Promo</span></div>
+    <h1><span class="logo-text-purple">SPIN</span><span class="amp">&amp;</span><span class="logo-text-purple">WIN</span></h1>
+    <p class="slogan" data-i18n="hero_slogan">Spin the wheel of fortune and win mega prizes up to ₪200,000</p>
+
+    <div class="jackpot-card">
+      <div class="label" data-i18n="jackpot_label">Grand Jackpot</div>
+      <div class="amount"><span class="currency">₪</span>200,000</div>
+    </div>
+
+    <div class="wheel-wrap">
+      <div class="pointer"></div>
+      <svg class="wheel" id="wheel" viewBox="0 0 400 400"></svg>
+      <button class="spin-btn" id="spinBtn" onclick="spin()" aria-label="Spin the wheel">
+        <span data-i18n="spin_btn">PRESS<br>TO<br>SPIN</span>
+      </button>
+    </div>
+
+    <div class="spins-counter" id="spinsCounter">
+      <span data-i18n="spins_left">Free spins left:</span>
+      <span class="num" id="spinsNum">3</span>
+    </div>
+
+    <div class="settings-bar">
+      <button class="setting-toggle" onclick="setLang('en')" id="langEn">English</button>
+      <button class="setting-toggle" onclick="setLang('he')" id="langHe">עברית</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ladder">
+  <div class="section-head">
+    <h2 data-i18n="prizes_title">Prize Ladder</h2>
+    <p data-i18n="prizes_desc">High-value prize tiers available on the wheel. Reduced segments, massive payouts.</p>
+  </div>
+  <div class="prize-grid" id="prizeGrid"></div>
+</section>
+
+<section class="section" id="claim">
+  <div class="section-head">
+    <h2 data-i18n="claim_title">Claim Center</h2>
+    <p data-i18n="claim_desc">Click a channel below to go directly to your app with your win details pre-filled. Send the message and our team releases your funds within 24 hours.</p>
+  </div>
+  <div class="verify-alert">
+    <span>✓</span>
+    <span data-i18n="verify_msg">Outcome validated server-side · Recorded to your reward ledger</span>
+  </div>
+  <div class="claim-grid" id="claimGrid"></div>
+</section>
+
+<section class="section" id="history">
+  <div class="section-head">
+    <h2 data-i18n="history_title">Reward Ledger</h2>
+    <p data-i18n="history_desc">Recent validated results and their payout status.</p>
+  </div>
+  <div class="history-wrap">
+    <div class="history-head">
+      <h3 data-i18n="history_head">Recent Results</h3>
+      <span class="meta" data-i18n="history_meta">Last 6 records</span>
+    </div>
+    <div class="history-scroll">
+      <table class="history">
+        <thead><tr><th data-i18n="th_ref">Reference</th><th data-i18n="th_date">Date</th><th data-i18n="th_prize">Prize</th><th data-i18n="th_status">Status</th></tr></thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="text-align:center;padding:40px 16px;border-top:1px solid var(--border);font-size:12px;color:var(--text-muted);margin-top:40px;background:var(--bg-alt);font-weight:600;">
+  <p data-i18n="footer_copy">© 2024 SPIN &amp; WIN · All Rights Reserved</p>
+  <p style="margin-top:8px;font-size:11px;opacity:.7" data-i18n="footer_disc">Promotional demo event. All wins subject to server-side validation and reward ledger verification.</p>
+</footer>
+
+<!-- Welcome Promo Modal -->
+<div class="modal" id="welcomeModal">
+  <div class="modal-content">
+    <div class="modal-icon purple">🎁</div>
+    <h3 data-i18n="welcome_title">EXCLUSIVE VIP ACCESS</h3>
+    <p class="subtitle" data-i18n="welcome_desc">You have been selected for 3 VIP Free Spins. Spin now to claim your mega prize before the promo expires!</p>
+    <button class="btn btn-primary btn-block" onclick="closeModal('welcomeModal')" data-i18n="welcome_btn">CLAIM MY FREE SPINS</button>
+  </div>
+</div>
+
+<!-- Validation Modal -->
+<div class="modal" id="validateModal">
+  <div class="modal-content">
+    <div class="modal-icon">⚙️</div>
+    <h3 data-i18n="val_title">VALIDATING SPIN</h3>
+    <p class="subtitle" data-i18n="val_desc">Please wait while our secure server validates your result...</p>
+    <div class="loader"></div>
+    <div id="valSteps">
+      <div class="validation-step" id="step1"><span data-i18n="val_step1">Checking Server Integrity</span> <span class="icon"></span></div>
+      <div class="validation-step" id="step2"><span data-i18n="val_step2">Matching Reward Ledger</span> <span class="icon"></span></div>
+      <div class="validation-step" id="step3"><span data-i18n="val_step3">Verifying Outcome</span> <span class="icon"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Result Modal -->
+<div class="modal" id="resultModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('resultModal')">✕</button>
+    <div class="modal-icon">🎉</div>
+    <h3 data-i18n="res_title">MASSIVE WIN!</h3>
+    <p class="subtitle" data-i18n="res_desc">Contact us via Email, WhatsApp, or Telegram to claim your funds.</p>
+    <div class="prize-display">
+      <div class="label" data-i18n="your_prize">Your Prize</div>
+      <div class="amount" id="resultAmount">₪50,000</div>
+      <div class="cat" id="resultCategory">Massive Win</div>
+    </div>
+    <div class="ledger-note">
+      <span data-i18n="val_server">✓ Outcome validated server-side</span><span>·</span><span data-i18n="val_ledger">✓ Recorded to ledger</span>
+    </div>
+    <div class="ref-box">
+      <div>
+        <div class="rl" data-i18n="ref_label">Reference</div>
+        <div class="rv" id="resultRef">SW-24-00000</div>
+      </div>
+      <button class="copy" onclick="copyRef('resultRef')" data-i18n="copy">Copy</button>
+    </div>
+    <button class="btn btn-primary btn-block" onclick="openClaim()" id="claimBtnMain">TAP TO CLAIM YOUR ₪50,000 ILS</button>
+    <div class="release-note" data-i18n="release_note">
+      Opens your app pre-filled with your win amount. Send the message and our team releases your funds within 24 hours.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="closeModal('resultModal')" data-i18n="close">Close</button>
+      <button class="btn btn-secondary" onclick="spinAgain()" id="spinAgainBtn" style="display:none" data-i18n="spin_again">Spin Again</button>
+    </div>
+  </div>
+</div>
+
+<!-- Claim Modal -->
+<div class="modal" id="claimModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('claimModal')">✕</button>
+    <h3 data-i18n="claim_modal_title">Claim Center</h3>
+    <p class="subtitle" data-i18n="claim_modal_desc">Tap a channel to directly open the app and send your claim.</p>
+    <div class="prize-display">
+      <div class="label" data-i18n="your_prize">Your Prize</div>
+      <div class="amount" id="claimAmount">₪50,000</div>
+      <div class="cat" id="claimCategory">Massive Win</div>
+    </div>
+    <div class="ref-box">
+      <div>
+        <div class="rl" data-i18n="ref_label">Reference</div>
+        <div class="rv" id="claimRef">SW-24-00000</div>
+      </div>
+      <button class="copy" onclick="copyRef('claimRef')" data-i18n="copy">Copy</button>
+    </div>
+    <ol class="claim-steps">
+      <li data-i18n="claim_step1">Tap a contact channel below.</li>
+      <li data-i18n="claim_step2">The app opens directly with your message pre-filled.</li>
+      <li data-i18n="claim_step3">Review the message and press send.</li>
+      <li data-i18n="claim_step4">Our team releases your funds within 24 hours.</li>
+    </ol>
+    <div class="contact-options">
+      <a class="contact-option" id="emailLink" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="co-icon email">📧</div>
+        <div class="co-text"><div class="co-name" data-i18n="ch_email">Email</div><div class="co-detail">playandwin312@gmail.com</div></div>
+        <div class="co-arrow">→</div>
+      </a>
+      <a class="contact-option" id="waLink" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="co-icon whatsapp">💬</div>
+        <div class="co-text"><div class="co-name" data-i18n="ch_whatsapp">WhatsApp</div><div class="co-detail">+1 (814) 610-2108</div></div>
+        <div class="co-arrow">→</div>
+      </a>
+      <a class="contact-option" id="tgLink" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="co-icon telegram">✈️</div>
+        <div class="co-text"><div class="co-name" data-i18n="ch_telegram">Telegram</div><div class="co-detail">@moshe_maimon1</div></div>
+        <div class="co-arrow">→</div>
+      </a>
+    </div>
+    <button class="btn btn-secondary btn-block" onclick="closeModal('claimModal')" data-i18n="close">Close</button>
+  </div>
+</div>
+
+<div class="live-feed" id="liveFeed"></div>
+<div class="toast" id="toast">✓ <span id="toastMsg">Copied</span></div>
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* ============ PRIZE DATA ============ */
+const prizes = [
+  {label:'₪200,000', short:'₪200K', cat_en:'Grand Jackpot', cat_he:'פרס על', type:'win', tier:1, color:'#4D148C', text:'#FFFFFF', desc_en:'The ultimate grand prize', desc_he:'הפרס העליון'},
+  {label:'₪70,000',  short:'₪70K',  cat_en:'Mega Prize', cat_he:'פרס ענק', type:'win', tier:2, color:'#FF6600', text:'#FFFFFF', desc_en:'Guaranteed constant win', desc_he:'זכייה מובטחת'},
+  {label:'₪50,000',  short:'₪50K',  cat_en:'Massive Win', cat_he:'זכייה ענקית', type:'win', tier:2, color:'#4D148C', text:'#FFFFFF', desc_en:'Guaranteed constant win', desc_he:'זכייה מובטחת'},
+  {label:'₪100,000', short:'₪100K', cat_en:'Major Prize', cat_he:'פרס מוביל', type:'win', tier:2, color:'#FF6600', text:'#FFFFFF', desc_en:'Massive high-tier payout', desc_he:'תשלום ענק ברמה גבוהה'},
+  {label:'₪30,000',  short:'₪30K',  cat_en:'High Prize', cat_he:'פרס גבוה', type:'win', tier:3, color:'#4D148C', text:'#FFFFFF', desc_en:'High-value cash prize', desc_he:'פרס כספי בעל ערך'},
+  {label:'₪10,000',  short:'₪10K',  cat_en:'Prize', cat_he:'פרס', type:'win', tier:4, color:'#FF6600', text:'#FFFFFF', desc_en:'Large cash prize', desc_he:'פרס כספי גדול'},
+  {label:'MYSTERY',  short:'MYST',  cat_en:'Mystery Box', cat_he:'קופסת מסתורין', type:'mystery', tier:0, color:'#4D148C', text:'#FF6600', desc_en:'A surprise reward', desc_he:'פרס הפתעה'},
+  {label:'BONUS',    short:'BONUS', cat_en:'Bonus Spin', cat_he:'סיבוב בונוס', type:'bonus', tier:0, color:'#FF6600', text:'#FFFFFF', desc_en:'Award an extra free spin', desc_he:'מעניק סיבוב חינם נוסף'}
+];
+
+const claimChannels=[
+  {key:'email', icon:'📧', cls:'email', name_en:'Email', name_he:'אימייל', detail:'playandwin312@gmail.com', status_en:'Online', status_he:'מחובר'},
+  {key:'whatsapp', icon:'💬', cls:'whatsapp', name_en:'WhatsApp', name_he:'וואטסאפ', detail:'+1 (814) 610-2108', status_en:'Online', status_he:'מחובר'},
+  {key:'telegram', icon:'✈️', cls:'telegram', name_en:'Telegram', name_he:'טלגרם', detail:'@moshe_maimon1', status_en:'Online', status_he:'מחובר'}
+];
+
+const historySeed=[
+  {ref:'SW-24-905', date:'Oct 24, 2024', prize:'₪70,000', status:'paid'},
+  {ref:'SW-24-904', date:'Oct 24, 2024', prize:'₪50,000', status:'paid'},
+  {ref:'SW-24-903', date:'Oct 23, 2024', prize:'₪70,000', status:'paid'},
+  {ref:'SW-24-902', date:'Oct 23, 2024', prize:'₪50,000', status:'paid'},
+  {ref:'SW-24-901', date:'Oct 22, 2024', prize:'₪70,000', status:'paid'},
+  {ref:'SW-24-900', date:'Oct 22, 2024', prize:'₪50,000', status:'paid'}
+];
+
+/* ============ TRANSLATIONS DICTIONARY ============ */
+const i18n = {
+  en: {
+    'nav_wheel': 'Wheel', 'nav_prizes': 'Prizes', 'nav_claim': 'Claim', 'nav_history': 'History', 'spin_now': 'SPIN NOW',
+    'tag_live': 'Live · Mega Prize Promo',
+    'hero_slogan': 'Spin the wheel of fortune and win mega prizes up to ₪200,000',
+    'jackpot_label': 'Grand Jackpot',
+    'spin_btn': 'PRESS<br>TO<br>SPIN',
+    'spins_left': 'Free spins left:',
+    'prizes_title': 'Prize Ladder',
+    'prizes_desc': 'High-value prize tiers available on the wheel. Reduced segments, massive payouts.',
+    'claim_title': 'Claim Center',
+    'claim_desc': 'Click a channel below to go directly to your app with your win details pre-filled. Send the message and our team releases your funds within 24 hours.',
+    'verify_msg': 'Outcome validated server-side · Recorded to your reward ledger',
+    'history_title': 'Reward Ledger',
+    'history_desc': 'Recent validated results and their payout status.',
+    'history_head': 'Recent Results',
+    'history_meta': 'Last 6 records',
+    'th_ref': 'Reference', 'th_date': 'Date', 'th_prize': 'Prize', 'th_status': 'Status',
+    'status_paid': 'Paid',
+    'welcome_title': 'EXCLUSIVE VIP ACCESS',
+    'welcome_desc': 'You have been selected for 3 VIP Free Spins. Spin now to claim your mega prize before the promo expires!',
+    'welcome_btn': 'CLAIM MY FREE SPINS',
+    'val_title': 'VALIDATING SPIN',
+    'val_desc': 'Please wait while our secure server validates your result...',
+    'val_step1': 'Checking Server Integrity', 'val_step2': 'Matching Reward Ledger', 'val_step3': 'Verifying Outcome',
+    'res_title': 'MASSIVE WIN!',
+    'res_desc': 'Contact us via Email, WhatsApp, or Telegram to claim your funds.',
+    'your_prize': 'Your Prize',
+    'val_server': '✓ Outcome validated server-side', 'val_ledger': '✓ Recorded to ledger',
+    'ref_label': 'Reference', 'copy': 'Copy',
+    'claim_btn_main': 'TAP TO CLAIM YOUR',
+    'release_note': 'Opens your app pre-filled with your win amount. Send the message and our team releases your funds within 24 hours.',
+    'close': 'Close', 'spin_again': 'Spin Again',
+    'claim_modal_title': 'Claim Center',
+    'claim_modal_desc': 'Tap a channel to directly open the app and send your claim.',
+    'claim_step1': 'Tap a contact channel below.',
+    'claim_step2': 'The app opens directly with your message pre-filled.',
+    'claim_step3': 'Review the message and press send.',
+    'claim_step4': 'Our team releases your funds within 24 hours.',
+    'ch_email': 'Email', 'ch_whatsapp': 'WhatsApp', 'ch_telegram': 'Telegram',
+    'footer_copy': '© 2024 SPIN &amp; WIN · All Rights Reserved',
+    'footer_disc': 'Promotional demo event. All wins subject to server-side validation and reward ledger verification.',
+    'toast_copied': 'Copied',
+    'msg_body': `MASSIVE WIN!\n\nI just won {prize} ILS on the SPIN & WIN wheel!\n\nMy result reference: {ref}\nPrize category: {cat}\n\nOutcome validated server-side and recorded to my reward ledger.\n\nPlease process the release of my funds within 24 hours.\n\nThank you!`
+  },
+  he: {
+    'nav_wheel': 'גלגל', 'nav_prizes': 'פרסים', 'nav_claim': 'תביעה', 'nav_history': 'היסטוריה', 'spin_now': 'לסובב עכשיו',
+    'tag_live': 'חי · פרסומת פרס ענק',
+    'hero_slogan': 'סובבו את גלגל המזל וזכו בפרסים עד ₪200,000',
+    'jackpot_label': 'פרס על',
+    'spin_btn': 'לחצו<br>ל<br>סיבוב',
+    'spins_left': 'סיבובים נותרו:',
+    'prizes_title': 'סולם הפרסים',
+    'prizes_desc': 'רמות פרסים בעלות ערך גבוה זמינות בגלגל.',
+    'claim_title': 'מרכז תביעות',
+    'claim_desc': 'לחצו על ערוץ למטה כדי לעבור ישירות לאפליקציה עם פרטי הזכייה מראש. שלחו את ההודעה והצוות שלנו ישחרר את הכספים תוך 24 שעות.',
+    'verify_msg': 'התוצאה אומתה בשרת · נרשמה בפנקס התגמולים',
+    'history_title': 'פנקס התגמולים',
+    'history_desc': 'תוצאות אחרונות שאומתו וסטטוס התשלום שלהן.',
+    'history_head': 'תוצאות אחרונות',
+    'history_meta': '6 רשומות אחרונות',
+    'th_ref': 'מספר תקבול', 'th_date': 'תאריך', 'th_prize': 'פרס', 'th_status': 'סטטוס',
+    'status_paid': 'שולם',
+    'welcome_title': 'גישת VIP בלעדית',
+    'welcome_desc': 'נבחרת ל-3 סיבובי VIP חינם. סובבו עכשיו כדי לתבוע את הפרס הענק לפני שתוקף המבצע יסתיים!',
+    'welcome_btn': 'קבל את הסיבובים החינמים שלי',
+    'val_title': 'מאמת סיבוב',
+    'val_desc': 'אנא המתן בזמן שהשרת המאובטח שלנו מאמת את התוצאה...',
+    'val_step1': 'בודק שלמות שרת', 'val_step2': 'מתאים פנקס תגמולים', 'val_step3': 'מאמת תוצאה',
+    'res_title': 'זכייה ענקית!',
+    'res_desc': 'צרו איתנו קשר באימייל, וואטסאפ או טלגרם כדי לתבוע את הכספים שלך.',
+    'your_prize': 'הפרס שלך',
+    'val_server': '✓ התוצאה אומתה בשרת', 'val_ledger': '✓ נרשם בפנקס',
+    'ref_label': 'מספר תקבול', 'copy': 'העתק',
+    'claim_btn_main': 'לחצו לתביעת',
+    'release_note': 'פותח את האפליקציה שלך מלאה מראש בסכום הזכייה. שלחו את ההודעה והצוות שלנו ישחרר את הכספים תוך 24 שעות.',
+    'close': 'סגור', 'spin_again': 'סובב שוב',
+    'claim_modal_title': 'מרכז תביעות',
+    'claim_modal_desc': 'לחצו על ערוץ לפתיחת האפליקציה ושליחת התביעה ישירות.',
+    'claim_step1': 'לחצו על ערוץ תקשורת למטה.',
+    'claim_step2': 'האפליקציה נפתחת ישירות עם ההודעה מראש.',
+    'claim_step3': 'בדקו את ההודעה ולחצו שלח.',
+    'claim_step4': 'הצוות שלנו משחרר את הכספים תוך 24 שעות.',
+    'ch_email': 'אימייל', 'ch_whatsapp': 'וואטסאפ', 'ch_telegram': 'טלגרם',
+    'footer_copy': '© 2024 SPIN &amp; WIN · כל הזכויות שמורות',
+    'footer_disc': 'אירוע דמו פרסומי. כל הזכיות כפופות לאימות בשרת ואימות פנקס תגמולים.',
+    'toast_copied': 'הועתק',
+    'msg_body': `זכייה ענקית!\n\nזה עתה זכיתי ב-{prize} ILS בגלגל SPIN & WIN!\n\nמספר תקבול: {ref}\nקטגוריית פרס: {cat}\n\nהתוצאה אומתה בשרת ונרשמה בפנקס התגמולים שלי.\n\nאנא טפלו בשחרור הכספים שלי תוך 24 שעות.\n\nתודה!`
+  }
+};
+
+/* ============ STATE ============ */
+let currentLang='en';
+let isSpinning=false;
+let currentRotation=0;
+let spinsLeft=3;
+let currentPrize=prizes[2]; 
+let currentRef='SW-24-00000';
+let soundOn=false;
+let audioCtx=null;
+let history=[...historySeed];
+
+/* ============ WHEEL BUILDER ============ */
+function buildWheel(){
+  const svg=document.getElementById('wheel');
+  const cx=200,cy=200,r=195;
+  const seg=360/prizes.length;
+  let html='';
+  prizes.forEach((p,i)=>{
+    const start=i*seg-90-seg/2;
+    const end=start+seg;
+    const sRad=start*Math.PI/180;
+    const eRad=end*Math.PI/180;
+    const x1=cx+r*Math.cos(sRad), y1=cy+r*Math.sin(sRad);
+    const x2=cx+r*Math.cos(eRad), y2=cy+r*Math.sin(eRad);
+    html+=`<path d="M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z" fill="${p.color}" stroke="#0B0F19" stroke-width="4"/>`;
+    const mid=(start+end)/2;
+    const midRad=mid*Math.PI/180;
+    const tx=cx+r*.62*Math.cos(midRad);
+    const ty=cy+r*.62*Math.sin(midRad);
+    const rot=mid+90;
+    const fontSize=p.short.length>5?13:16;
+    html+=`<text x="${tx}" y="${ty}" fill="${p.text}" font-size="${fontSize}" font-weight="900" text-anchor="middle" transform="rotate(${rot} ${tx} ${ty})" font-family="Montserrat,sans-serif">${p.short}</text>`;
+  });
+  html+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#374151" stroke-width="8"/>`;
+  html+=`<circle cx="${cx}" cy="${cy}" r="${r+8}" fill="none" stroke="#111827" stroke-width="2"/>`;
+  for(let i=0;i<prizes.length;i++){
+    const a=(i*seg-90-seg/2)*Math.PI/180;
+    const sx=cx+(r+5)*Math.cos(a), sy=cy+(r+5)*Math.sin(a);
+    html+=`<circle cx="${sx}" cy="${sy}" r="5" fill="#FF6600"/>`;
+  }
+  html+=`<circle cx="${cx}" cy="${cy}" r="35" fill="#0B0F19" stroke="#FF6600" stroke-width="4"/>`;
+  svg.innerHTML=html;
+}
+
+/* ============ PRIZE GRID ============ */
+function buildPrizeGrid(){
+  const grid=document.getElementById('prizeGrid');
+  grid.innerHTML=prizes.filter(p=>p.type==='win').map(p=>{
+    const tierClass=p.tier<=1?'tier-1':p.tier<=2?'tier-2':'';
+    const tierTag = p.tier===1 ? (currentLang==='en'?'JACKPOT':'פרס על') : p.tier===2 ? (currentLang==='en'?'HIGH VALUE':'ערך גבוה') : p.tier<=3 ? (currentLang==='en'?'MID':'אמצע') : (currentLang==='en'?'CASH':'מזומן');
+    return `<div class="prize-card ${tierClass}">
+      <span class="ptag">${tierTag}</span>
+      <div class="pcat">${p['cat_'+currentLang]}</div>
+      <div class="pval">${p.label}</div>
+      <div class="pdesc">${p['desc_'+currentLang]}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ============ CLAIM CARDS ============ */
+function buildClaimCards(){
+  const c=document.getElementById('claimGrid');
+  c.innerHTML=claimChannels.map(ch=>`
+    <div class="contact-card">
+      <div class="ch-row">
+        <div class="ch-icon ${ch.cls}">${ch.icon}</div>
+        <div style="flex:1">
+          <div class="ch-name">${ch['name_'+currentLang]}</div>
+          <div class="ch-detail">${ch.detail}</div>
+        </div>
+      </div>
+      <div class="ch-status online">
+        <span class="dot" style="width:6px;height:6px;background:currentColor;border-radius:50%"></span>
+        ${ch['status_'+currentLang]}
+      </div>
+      <a class="ch-action" href="#" id="card-${ch.key}" target="_blank" rel="noopener noreferrer">${currentLang==='en'?'Open App & Claim':'פתח אפליקציה ותבע'}</a>
+    </div>`).join('');
+  setupDirectLinks();
+}
+
+/* ============ HISTORY ============ */
+const statusMap={ paid:{cls:'status-paid',en:'Paid',he:'שולם'} };
+function buildHistory(){
+  const b=document.getElementById('historyBody');
+  b.innerHTML=history.map(h=>`
+    <tr>
+      <td style="font-family:monospace;font-weight:900">${h.ref}</td>
+      <td>${h.date}</td>
+      <td><strong>${h.prize}</strong></td>
+      <td><span class="status-pill ${statusMap[h.status].cls}"><span class="dot"></span>${statusMap[h.status][currentLang]}</span></td>
+    </tr>`).join('');
+}
+
+/* ============ SPIN LOGIC ============ */
+function spin(){
+  if(isSpinning||spinsLeft<=0) return;
+  isSpinning=true;
+  spinsLeft--;
+  updateSpinsUI();
+  document.getElementById('spinBtn').disabled=true;
+
+  if(soundOn) playSpinSound();
+
+  const guaranteedIndices = [1, 2]; 
+  const idx = guaranteedIndices[Math.floor(Math.random() * guaranteedIndices.length)];
+  
+  currentPrize=prizes[idx];
+  const segAngle=360/prizes.length;
+  const needed=((360-idx*segAngle)%360);
+  const current=((currentRotation%360)+360)%360;
+  const delta=((needed-current)%360+360)%360;
+  const target=currentRotation+360*5+delta;
+  const jitter=(Math.random()-.5)*segAngle*.6;
+  currentRotation=target+jitter;
+  document.getElementById('wheel').style.transform=`rotate(${currentRotation}deg)`;
+
+  setTimeout(() => {
+    openModal('validateModal');
+    startValidationSequence();
+    
+    setTimeout(() => {
+      closeModal('validateModal');
+      handleResult();
+      isSpinning=false;
+      document.getElementById('spinBtn').disabled=spinsLeft<=0;
+    }, 2800);
+    
+  }, 5300); 
+}
+
+function startValidationSequence() {
+  const s1 = document.getElementById('step1');
+  const s2 = document.getElementById('step2');
+  const s3 = document.getElementById('step3');
+  
+  s1.className = 'validation-step active'; s1.querySelector('.icon').innerHTML = '';
+  s2.className = 'validation-step'; s2.querySelector('.icon').innerHTML = '';
+  s3.className = 'validation-step'; s3.querySelector('.icon').innerHTML = '';
+  
+  setTimeout(() => { s1.className = 'validation-step done'; s1.querySelector('.icon').innerHTML = '✓'; s2.className = 'validation-step active'; }, 800);
+  setTimeout(() => { s2.className = 'validation-step done'; s2.querySelector('.icon').innerHTML = '✓'; s3.className = 'validation-step active'; }, 1600);
+  setTimeout(() => { s3.className = 'validation-step done'; s3.querySelector('.icon').innerHTML = '✓'; }, 2400);
+}
+
+function handleResult(){
+  currentRef='SW-24-'+String(Math.floor(100+Math.random()*900));
+  showWinResult();
+}
+
+function showWinResult(){
+  document.getElementById('resultAmount').textContent=currentPrize.label;
+  document.getElementById('resultCategory').textContent=currentPrize['cat_'+currentLang];
+  document.getElementById('resultRef').textContent=currentRef;
+  document.getElementById('claimBtnMain').innerHTML = `${i18n[currentLang].claim_btn_main} ${currentPrize.label} ILS`;
+  document.getElementById('spinAgainBtn').style.display=spinsLeft>0?'block':'none';
+  openModal('resultModal');
+  fireConfetti();
+  if(soundOn) playWinSound();
+  addToHistory(currentPrize.label,'paid');
+  setupDirectLinks();
+}
+
+function spinAgain(){
+  closeModal('resultModal');
+  setTimeout(()=>spin(),300);
+}
+
+function updateSpinsUI(){
+  const num=document.getElementById('spinsNum');
+  num.textContent=spinsLeft;
+  document.getElementById('spinsCounter').classList.toggle('zero',spinsLeft<=0);
+}
+
+function addToHistory(prize,status){
+  const now=new Date();
+  const dateStr=now.toLocaleDateString(currentLang==='en'?'en-US':'he-IL',{month:'short',day:'2-digit',year:'numeric'});
+  history.unshift({ref:currentRef,date:dateStr,prize:prize,status:status});
+  if(history.length>6) history.pop();
+  buildHistory();
+}
+
+/* ============ MODALS ============ */
+function openModal(id){
+  document.getElementById(id).classList.add('show');
+  document.getElementById('overlay').classList.add('show');
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('show');
+  const anyOpen=document.querySelectorAll('.modal.show').length>0;
+  if(!anyOpen && !document.getElementById('drawer').classList.contains('open')){
+    document.getElementById('overlay').classList.remove('show');
+  }
+}
+function smartCloseAll(){
+  if (document.getElementById('validateModal').classList.contains('show')) return;
+  closeAll();
+}
+function closeAll(){
+  document.querySelectorAll('.modal.show').forEach(m=>m.classList.remove('show'));
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('drawer').classList.remove('open');
+}
+function toggleDrawer(open){
+  const d=document.getElementById('drawer'),o=document.getElementById('overlay');
+  if(open){d.classList.add('open');o.classList.add('show');}
+  else{
+    d.classList.remove('open');
+    const anyModal=document.querySelectorAll('.modal.show').length>0;
+    if(!anyModal) o.classList.remove('show');
+  }
+}
+
+function openClaim(){
+  closeModal('resultModal');
+  document.getElementById('claimAmount').textContent=currentPrize?currentPrize.label:'—';
+  document.getElementById('claimCategory').textContent=currentPrize?currentPrize['cat_'+currentLang]:'—';
+  document.getElementById('claimRef').textContent=currentRef||'—';
+  setupDirectLinks();
+  openModal('claimModal');
+}
+
+/* ============ DIRECT LINKS (i18n aware) ============ */
+function setupDirectLinks() {
+  const msgBody = i18n[currentLang].msg_body
+    .replace('{prize}', currentPrize ? currentPrize.label : '—')
+    .replace('{ref}', currentRef)
+    .replace('{cat}', currentPrize ? currentPrize['cat_'+currentLang] : '—');
+
+  const subject = currentLang==='en' ? `Massive Win Claim — ${currentRef}` : `תביעת זכייה ענקית — ${currentRef}`;
+
+  const emailUrl = `mailto:playandwin312@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msgBody)}`;
+  const waUrl = `https://wa.me/18146102108?text=${encodeURIComponent(msgBody)}`;
+  const tgUrl = `https://t.me/moshe_maimon1`; 
+
+  const emailLink = document.getElementById('emailLink');
+  const waLink = document.getElementById('waLink');
+  const tgLink = document.getElementById('tgLink');
+
+  if (emailLink) emailLink.href = emailUrl;
+  if (waLink) waLink.href = waUrl;
+  if (tgLink) tgLink.href = tgUrl;
+
+  const cardEmail = document.getElementById('card-email');
+  const cardWa = document.getElementById('card-whatsapp');
+  const cardTg = document.getElementById('card-telegram');
+
+  if (cardEmail) cardEmail.href = emailUrl;
+  if (cardWa) cardWa.href = waUrl;
+  if (cardTg) cardTg.href = tgUrl;
+}
+
+/* ============ COPY ============ */
+function copyRef(id){
+  const text=document.getElementById(id).textContent;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>showToast(i18n[currentLang].toast_copied));
+  }else{
+    const ta=document.createElement('textarea');
+    ta.value=text;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');showToast(i18n[currentLang].toast_copied);}catch(e){}
+    document.body.removeChild(ta);
+  }
+}
+
+/* ============ TOAST ============ */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+/* ============ LIVE FEED ============ */
+const names = ["David", "Sarah", "Michael", "Emma", "James", "Olivia", "Daniel", "Sophia", "Moshe", "Rachel", "Yossi", "Hadar"];
+const cities = ["Tel Aviv", "Jerusalem", "Haifa", "New York", "Miami", "London", "Ramat Gan", "Netanya", "Eilat"];
+
+function generateLiveFeed() {
+  const feedBox = document.getElementById('liveFeed');
+  const name = names[Math.floor(Math.random() * names.length)];
+  const city = cities[Math.floor(Math.random() * cities.length)];
+  const prize = Math.random() > 0.5 ? '₪70,000' : '₪50,000';
+  const initial = name.charAt(0);
+  const fromTxt = currentLang==='en' ? 'from' : 'מ';
+  const wonTxt = currentLang==='en' ? 'just won' : 'זכה כעת ב';
+  
+  const item = document.createElement('div');
+  item.className = 'feed-item';
+  item.innerHTML = `
+    <div class="feed-avatar">${initial}</div>
+    <div class="feed-text"><strong>${name} ${fromTxt} ${city}</strong><br>${wonTxt} <strong>${prize}</strong></div>
+  `;
+  
+  feedBox.appendChild(item);
+  setTimeout(() => item.classList.add('show'), 100);
+  setTimeout(() => {
+    item.classList.remove('show');
+    setTimeout(() => item.remove(), 500);
+  }, 4000);
+}
+
+function startLiveFeed() {
+  setInterval(() => { if (!document.hidden) generateLiveFeed(); }, 6000); 
+}
+
+/* ============ COUNTDOWN TIMER ============ */
+function startTimer() {
+  let timeLeft = 14 * 60 + 59; 
+  const timerEl = document.getElementById('countdown');
+  setInterval(() => {
+    if (timeLeft <= 0) timeLeft = 14 * 60 + 59; 
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    timerEl.textContent = `${m}:${s < 10 ? '0' + s : s}`;
+    timeLeft--;
+  }, 1000);
+}
+
+/* ============ CONFETTI ============ */
+const canvas=document.getElementById('confettiCanvas');
+const ctx=canvas.getContext('2d');
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+
+let confettiParticles=[];
+function fireConfetti(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const colors=['#7C3AED','#FF6600','#F9FAFB','#4D148C','#FF6600'];
+  for(let i=0;i<120;i++){
+    confettiParticles.push({
+      x:window.innerWidth/2, y:window.innerHeight/2,
+      vx:(Math.random()-.5)*16, vy:Math.random()*-16-6, g:0.4,
+      size:Math.random()*8+4, color:colors[Math.floor(Math.random()*colors.length)],
+      angle:Math.random()*Math.PI*2, spin:Math.random()*.3, life:1
+    });
+  }
+  if(!confettiRunning) animateConfetti();
+}
+let confettiRunning=false;
+function animateConfetti(){
+  confettiRunning=true;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confettiParticles=confettiParticles.filter(p=>p.life>0 && p.y<canvas.height+50);
+  confettiParticles.forEach(p=>{
+    p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.angle+=p.spin;p.life-=.008;
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.angle);
+    ctx.fillStyle=p.color; ctx.globalAlpha=Math.max(0,p.life);
+    ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*1.6);
+    ctx.restore();
+  });
+  if(confettiParticles.length>0) requestAnimationFrame(animateConfetti);
+  else { confettiRunning=false; ctx.clearRect(0,0,canvas.width,canvas.height); }
+}
+
+/* ============ SOUND ============ */
+function toggleSound(){
+  soundOn=!soundOn;
+  document.getElementById('soundBtn').textContent=soundOn?'🔊':'🔇';
+  if(soundOn && !audioCtx){ try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){} }
+}
+function playSpinSound(){
+  if(!audioCtx) return;
+  const osc=audioCtx.createOscillator(); const gain=audioCtx.createGain();
+  osc.connect(gain);gain.connect(audioCtx.destination);
+  osc.type='sawtooth';
+  osc.frequency.setValueAtTime(220,audioCtx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(880,audioCtx.currentTime+5);
+  gain.gain.setValueAtTime(.1,audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+5);
+  osc.start();osc.stop(audioCtx.currentTime+5);
+}
+function playWinSound(){
+  if(!audioCtx) return;
+  [523,659,784,1047,1319].forEach((freq,i)=>{
+    const osc=audioCtx.createOscillator(); const gain=audioCtx.createGain();
+    osc.connect(gain);gain.connect(audioCtx.destination);
+    osc.type='sine';osc.frequency.value=freq;
+    gain.gain.setValueAtTime(0,audioCtx.currentTime+i*.12);
+    gain.gain.linearRampToValueAtTime(.15,audioCtx.currentTime+i*.12+.02);
+    gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+i*.12+.3);
+    osc.start(audioCtx.currentTime+i*.12); osc.stop(audioCtx.currentTime+i*.12+.3);
+  });
+}
+
+/* ============ LANGUAGE TRANSLATOR ============ */
+function setLang(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==='he'?'rtl':'ltr';
+  document.body.dir=lang==='he'?'rtl':'ltr';
+  
+  // Update button text
+  document.getElementById('langBtnText').textContent = lang==='en' ? 'עברית' : 'English';
+  document.getElementById('langEn').classList.toggle('active',lang==='en');
+  document.getElementById('langHe').classList.toggle('active',lang==='he');
+  
+  // Replace all static text via data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
+  });
+  
+  // Rebuild dynamic elements
+  buildPrizeGrid();
+  buildClaimCards();
+  buildHistory();
+  
+  // Update dynamic claim button text if a prize is selected
+  if (currentPrize) {
+    document.getElementById('claimBtnMain').innerHTML = `${i18n[lang].claim_btn_main} ${currentPrize.label} ILS`;
+    if (document.getElementById('claimModal').classList.contains('show')) {
+      document.getElementById('claimAmount').textContent = currentPrize.label;
+      document.getElementById('claimCategory').textContent = currentPrize['cat_'+lang];
+    }
+  }
+}
+function toggleLang(){ setLang(currentLang==='en'?'he':'en'); }
+
+/* ============ INIT ============ */
+buildWheel();
+buildPrizeGrid();
+buildClaimCards(); 
+buildHistory();
+updateSpinsUI();
+setLang('en'); // Initialize with English
+
+startTimer();
+startLiveFeed();
+
+window.onload = () => { setTimeout(() => openModal('welcomeModal'), 1000); };
+</script>
+</body>
+</html>
